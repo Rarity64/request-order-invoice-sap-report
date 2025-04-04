@@ -10,7 +10,7 @@ CLASS lcl_app IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_data.
-    BREAK-POINT. "Äëÿ ïðîïóñêà çàïðîñà è ââîäà òåñòîâûõ äàííûõ.
+    BREAK-POINT. "Ð”Ð»Ñ Ð¿Ñ€Ð¾Ð¿ÑƒÑÐºÐ° Ð·Ð°Ð¿Ñ€Ð¾ÑÐ° Ð¸ Ð²Ð²Ð¾Ð´Ð° Ñ‚ÐµÑÑ‚Ð¾Ð²Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ….
     SELECT a~bukrs, b~banfn, b~bnfpo, b~matnr,
            b~menge AS eb_menge, a~ebeln, c~ebelp, c~menge AS ek_menge,
            d~belnr, d~buzei, d~menge AS rs_menge, d~shkzg
@@ -23,7 +23,7 @@ CLASS lcl_app IMPLEMENTATION.
       INNER JOIN rseg AS d
         ON d~ebelp = c~ebelp
       INNER JOIN rbkp AS e
-*        ON a~ebeln = e~ebeln "Â RBKP íåòó EBELN, çàìåíåíî íà BELNR.
+*        ON a~ebeln = e~ebeln "Ð’ Ð¼Ð¾ÐµÐ¹ Ð²ÐµÑ€ÑÐ¸Ð¸ SAP Ð² Ñ‚. RBKP Ð½ÐµÑ‚Ñƒ EBELN, Ð·Ð°Ð¼ÐµÐ½ÐµÐ½Ð¾ Ð½Ð° BELNR.
         ON d~belnr = e~belnr
       WHERE a~bukrs IN @so_bukrs
         AND b~banfn IN @so_banfn
@@ -34,7 +34,7 @@ CLASS lcl_app IMPLEMENTATION.
     IF sy-subrc = 0.
       convert_data( ).
     ELSE.
-      MESSAGE 'Äàííûå íå íàéäåíû' TYPE 'E'.
+      MESSAGE 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' TYPE 'E'.
     ENDIF.
   ENDMETHOD.
 
@@ -54,7 +54,7 @@ CLASS lcl_app IMPLEMENTATION.
         CHANGING  t_table = gt_data
       ).
 
-      go_grid->get_columns( )->set_optimize( abap_true ).  "Àâòîìàòè÷åñêàÿ îïòèìèçàöèÿ êîëîíîê
+      go_grid->get_columns( )->set_optimize( abap_true ).  "ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ°Ñ Ð¾Ð¿Ñ‚Ð¸Ð¼Ð¸Ð·Ð°Ñ†Ð¸Ñ ÐºÐ¾Ð»Ð¾Ð½Ð¾Ðº
 
       lo_events = go_grid->get_event( ).
       SET HANDLER _on_double_click FOR lo_events.
